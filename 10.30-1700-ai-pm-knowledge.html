@@ -1,309 +1,187 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#faf9f6">
-  <meta name="description" content="A structured technical knowledge guide for AI product managers.">
-  <title>AI PM Knowledge — Commonplace</title>
-  <style>
-    :root{color-scheme:light;--paper:#faf9f6;--ink:#292923;--muted:#77746b;--line:#dedbd2;--accent:#3457a4;--soft:#f0eee7;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}
-    .shell{display:grid;grid-template-columns:250px minmax(0,850px);gap:64px;max-width:1240px;margin:0 auto;padding:42px 34px 90px}
-    aside{position:sticky;top:28px;align-self:start;max-height:calc(100vh - 56px);overflow:auto;padding-right:8px}
-    .back{display:inline-block;margin-bottom:28px;color:var(--muted);font-size:13px;text-decoration:none}.back:hover{color:var(--ink)}
-    .side-label{margin:0 0 12px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-    nav a{display:block;padding:7px 10px;border-left:2px solid transparent;color:#66645c;font-size:13px;line-height:1.35;text-decoration:none}
-    nav a:hover,nav a.active{border-color:var(--accent);color:var(--accent);background:#f1f0eb}
-    main{min-width:0}.eyebrow{margin:0 0 14px;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-    h1{max-width:760px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,6vw,68px);font-weight:400;letter-spacing:-.055em;line-height:1.02}
-    .dek{max-width:690px;margin:22px 0 28px;color:#69675e;font-family:Georgia,serif;font-size:20px;line-height:1.55}
-    .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:42px}.pill{border:1px solid var(--line);border-radius:99px;padding:6px 10px;color:#6b685f;font-size:11px}
-    .callout{margin:28px 0;padding:18px 20px;border-left:3px solid var(--accent);background:var(--soft);color:#55534b;font-family:Georgia,serif;line-height:1.6}
-    section{padding-top:14px;margin-top:54px;border-top:1px solid var(--line);scroll-margin-top:24px}
-    h2{margin:0 0 20px;font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:-.04em}
-    h3{margin:30px 0 10px;font-family:Georgia,serif;font-size:22px;font-weight:400;letter-spacing:-.025em}
-    h4{margin:20px 0 8px;font-size:14px}
-    p{margin:10px 0;color:#4f4d46;font-size:15px;line-height:1.75}
-    ul,ol{padding-left:22px;color:#4f4d46;font-size:15px;line-height:1.7}li{padding-left:4px;margin:5px 0}
-    strong{color:#292923;font-weight:650}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
-    .concept{padding:15px 16px;border:1px solid var(--line);border-radius:8px;background:#fffdf9}
-    .concept strong{display:block;margin-bottom:4px;font-size:13px}.concept p{margin:0;font-size:13px;line-height:1.55}
-    .steps{counter-reset:step;list-style:none;padding:0}.steps li{position:relative;margin:0;padding:12px 14px 12px 48px;border-bottom:1px solid var(--line)}
-    .steps li:before{counter-increment:step;content:counter(step);position:absolute;left:8px;top:12px;display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#e9edf7;color:var(--accent);font-size:12px;font-weight:700}
-    .table-wrap{overflow-x:auto;margin:18px 0}table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.55}th,td{padding:12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{background:var(--soft);font-weight:650}
-    .question{margin:12px 0;padding:16px 18px;border:1px solid var(--line);border-radius:8px;background:#fffdf9}
-    .question h4{margin:0 0 7px;color:var(--accent);font-size:14px}.question p{margin:0;font-size:14px}
-    .framework{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.framework .concept{background:transparent}
-    .footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
-    @media(max-width:900px){.shell{display:block;max-width:850px;padding:30px 22px 70px}aside{position:static;max-height:none;margin-bottom:42px}nav{display:flex;flex-wrap:wrap;gap:4px}nav a{border-left:0;border-bottom:2px solid transparent;padding:7px 9px}.side-label{margin-bottom:8px}.back{margin-bottom:16px}}
-    @media(max-width:560px){.grid,.framework{grid-template-columns:1fr}h2{font-size:29px}.dek{font-size:18px}.shell{padding-inline:18px}}
-  </style>
-</head>
-<body>
-<div class="shell">
-  <aside>
-    <a class="back" href="./index.html">← Commonplace</a>
-    <p class="side-label">On this page</p>
-    <nav aria-label="Page sections">
-      <a href="#fundamentals">LLM fundamentals</a>
-      <a href="#tools">Tools, agents &amp; MCP</a>
-      <a href="#rag">RAG &amp; context</a>
-      <a href="#orchestration">Orchestration &amp; routing</a>
-      <a href="#design">System design &amp; trade-offs</a>
-      <a href="#evaluation">Evals &amp; metrics</a>
-      <a href="#companies">Company interview themes</a>
-      <a href="#framework">PM answer framework</a>
-      <a href="#glossary">Quick glossary</a>
-    </nav>
-  </aside>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#faf9f6">
+<meta name="description" content="A four-level technical field guide for AI product managers."><title>AI PM Knowledge — Commonplace</title>
+<style>
+:root{color-scheme:light;--paper:#faf9f6;--ink:#292923;--muted:#77746b;--line:#dedbd2;--accent:#3457a4;--soft:#f0eee7;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}.shell{display:grid;grid-template-columns:255px minmax(0,870px);gap:58px;max-width:1280px;margin:auto;padding:38px 32px 90px}
+aside{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto}.back{display:inline-block;margin-bottom:28px;color:var(--muted);font-size:13px;text-decoration:none}.side-label,.eyebrow,.level-label{font-size:10px;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}nav a{display:block;padding:7px 10px;border-left:2px solid transparent;color:#66645c;font-size:12px;text-decoration:none;line-height:1.4}nav a:hover,nav a.active{border-color:var(--accent);color:var(--accent);background:#f1f0eb}
+main{min-width:0}.eyebrow{color:var(--accent)}h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.035em}h1{font-size:clamp(44px,6vw,70px);line-height:1;margin:10px 0 20px}h2{font-size:34px;margin:0 0 22px}h3{font-size:25px;margin:36px 0 10px}h4{font-size:18px;margin:20px 0 8px}
+.dek{font:20px/1.55 Georgia,serif;color:#69675e;max-width:720px}.meta{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 40px}.pill{border:1px solid var(--line);border-radius:99px;padding:6px 10px;color:#6b685f;font-size:11px}
+p{font-size:14px;line-height:1.75;color:#4f4d46;margin:9px 0}ul,ol{padding-left:22px;color:#4f4d46;font-size:14px;line-height:1.7}li{margin:5px 0;padding-left:3px}strong{color:#292923;font-weight:700}
+section.chapter{padding-top:16px;margin-top:58px;border-top:1px solid var(--line);scroll-margin-top:24px}.chapter-intro{font:17px/1.7 Georgia,serif;color:#55534b;max-width:760px}
+.depth{margin:18px 0 24px;border:1px solid var(--line);border-radius:10px;background:#fffdf9;overflow:hidden}.depth-head{padding:11px 16px;background:var(--soft);display:flex;align-items:center;gap:10px}.depth-head span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--accent)}.depth-head b{font-size:13px;font-weight:650}.depth-body{padding:15px 17px}.depth-body p:first-child{margin-top:0}.depth-body p:last-child{margin-bottom:0}
+.concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.concept{padding:13px 14px;border:1px solid var(--line);border-radius:7px;background:#fff}.concept b{display:block;font-size:13px;margin-bottom:4px}.concept p{font-size:12px;line-height:1.6;margin:0}
+.engineering{background:#f5f4ef;border-radius:8px;padding:16px 18px;margin-top:12px}.engineering h4{font:700 11px/1.4 Inter,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}.engineering p,.engineering li{font-size:13px}
+.table-wrap{overflow-x:auto;margin:15px 0}table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.55}th,td{padding:10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{background:var(--soft);font-weight:700}
+.callout{margin:24px 0;padding:17px 19px;border-left:3px solid var(--accent);background:var(--soft);font:15px/1.65 Georgia,serif;color:#55534b}
+.steps{counter-reset:n;list-style:none;padding:0}.steps li{position:relative;padding:10px 12px 10px 43px;border-bottom:1px solid var(--line)}.steps li:before{counter-increment:n;content:counter(n);position:absolute;left:5px;top:9px;width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:#e9edf7;color:var(--accent);font-size:11px;font-weight:800}
+.question{padding:15px 16px;margin:10px 0;border:1px solid var(--line);border-radius:8px}.question b{font-size:13px;color:var(--accent)}.question p{margin-bottom:0}
+footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+@media(max-width:900px){.shell{display:block;padding:28px 22px 70px}aside{position:static;max-height:none;margin-bottom:34px}nav{display:flex;flex-wrap:wrap;gap:3px}nav a{border:0;border-bottom:2px solid transparent;padding:7px}.side-label{margin-bottom:8px}}
+@media(max-width:560px){.shell{padding-inline:17px}.concepts{grid-template-columns:1fr}h2{font-size:29px}h3{font-size:22px}.dek{font-size:18px}}
+</style></head>
+<body><div class="shell">
+<aside><a class="back" href="./index.html">← Commonplace</a><p class="side-label">Knowledge map</p><nav aria-label="Page sections">
+<a href="#llm">01 · LLM fundamentals</a><a href="#tools">02 · Tools, agents &amp; MCP</a><a href="#rag">03 · RAG &amp; context</a><a href="#orchestration">04 · Orchestration &amp; routing</a><a href="#design">05 · System design</a><a href="#evaluation">06 · Evals &amp; metrics</a><a href="#company">07 · Company themes</a><a href="#pm">08 · PM answer framework</a><a href="#glossary">Quick glossary</a>
+</nav></aside>
+<main>
+<header><p class="eyebrow">Commonplace / Product &amp; Technology</p><h1>AI PM<br>Knowledge</h1><p class="dek">A four-level technical field guide for product managers building AI-powered products: define the idea, understand what it means, learn the concepts and their uses, then go beneath the surface into engineering.</p><div class="meta"><span class="pill">Technical foundations</span><span class="pill">Architecture &amp; engineering</span><span class="pill">Product judgment</span><span class="pill">Interview preparation</span></div></header>
+<div class="callout"><strong>The four-level learning pattern used throughout:</strong> <strong>1 · Definition</strong> — a precise meaning. <strong>2 · What it means</strong> — an intuitive mental model and why it matters. <strong>3 · Concepts and uses</strong> — the building blocks, where they fit, and when to use them. <strong>4 · Engineering depth</strong> — how the system is implemented, its data flow, design decisions, failure modes, and operational trade-offs.</div>
 
-  <main>
-    <header>
-      <p class="eyebrow">Commonplace / Product &amp; Technology</p>
-      <h1>AI PM<br>Knowledge</h1>
-      <p class="dek">A technical field guide for product managers building AI-powered products. Understand what happens under the hood, make sound architecture trade-offs, and connect technical choices to customer outcomes.</p>
-      <div class="meta"><span class="pill">Technical foundations</span><span class="pill">Product judgment</span><span class="pill">Interview preparation</span></div>
-    </header>
+<section class="chapter" id="llm"><h2>01 / LLM fundamentals</h2><p class="chapter-intro">The model layer: how text becomes numbers, how a transformer processes context, how it generates output, and why model behavior is probabilistic rather than database-like.</p>
+<div class="depth"><div class="depth-head"><span>Level 1</span><b>Definition — what is an LLM?</b></div><div class="depth-body"><p>A <strong>large language model (LLM)</strong> is a neural network trained on large collections of data to model sequences of tokens. Given preceding tokens, it estimates a probability distribution for the next token. Most modern general-purpose LLMs use transformer architectures.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 2</span><b>What that means — the mental model</b></div><div class="depth-body"><p>Think of an LLM as a learned pattern engine, not a person searching a library of facts. It converts input into token IDs, maps those IDs to vectors, processes the vectors through many neural-network layers, and predicts what token should come next. It then appends that token and repeats.</p><p>The model's parameters encode statistical relationships learned during training. The prompt supplies the immediate task and context. The runtime controls decoding, safety checks, tools, and delivery. These are separate parts of the product system.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 3</span><b>Concepts in this space and what they are used for</b></div><div class="depth-body"><div class="concepts">
+<div class="concept"><b>Tokenization</b><p>Maps text to token IDs. Affects context usage, cost, truncation, and multilingual behavior.</p></div><div class="concept"><b>Embeddings</b><p>Maps token IDs to learned vectors. Provides the numerical representation consumed by the network.</p></div>
+<div class="concept"><b>Transformer</b><p>Neural architecture built around attention and feed-forward blocks. Enables contextual sequence processing.</p></div><div class="concept"><b>Self-attention</b><p>Lets tokens exchange information with other tokens. Used to model relationships across the input sequence.</p></div>
+<div class="concept"><b>Positional information</b><p>Encodes token order or position. Without it, sequence order would be ambiguous.</p></div><div class="concept"><b>Weights and biases</b><p>Learned parameters. Determine the transformations applied to representations at inference time.</p></div>
+<div class="concept"><b>Context window</b><p>Maximum sequence budget supported by a model/request. Governs how much prompt, history, retrieval, and output can fit.</p></div><div class="concept"><b>Decoding</b><p>Turns next-token probabilities into selected tokens. Greedy, sampling, temperature, and top-p affect output behavior.</p></div>
+<div class="concept"><b>Pre-training</b><p>Builds general representations and predictive capability from large corpora.</p></div><div class="concept"><b>Post-training</b><p>Aligns behavior to instructions, preferences, and safety expectations.</p></div>
+<div class="concept"><b>Fine-tuning</b><p>Updates weights for specialized behavior, format, or task performance.</p></div><div class="concept"><b>Inference</b><p>Runs the trained network to produce output. This is where serving latency and compute cost arise.</p></div>
+</div><p><strong>When to use what:</strong> prompt changes for task instructions; retrieval for fresh or private facts; fine-tuning for repeated behavior or format; a larger or reasoning-capable model when task complexity justifies the cost.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 4</span><b>Engineering depth — what happens inside the model</b></div><div class="depth-body">
+<h4>From text to generated token</h4><ol class="steps"><li><strong>Tokenize:</strong> A tokenizer segments input text into token IDs using a learned vocabulary.</li><li><strong>Embed:</strong> Each token ID is mapped to a vector representation; positional information is added or applied.</li><li><strong>Project to Q, K, V:</strong> Attention layers compute query, key, and value representations from hidden states.</li><li><strong>Attend:</strong> Queries are compared with keys; normalized attention weights combine value vectors. Causal masking prevents a position from seeing future tokens.</li><li><strong>Transform:</strong> Feed-forward/MLP blocks, residual connections, and normalization further transform each token representation.</li><li><strong>Predict:</strong> The final hidden state is projected to vocabulary logits, converted to probabilities, and decoded into a next token.</li><li><strong>Repeat:</strong> The generated token is appended and the decode loop continues until a stop condition or output limit.</li></ol>
+<h4>Attention mechanics</h4><p>For each attention head, the model computes query (Q), key (K), and value (V) matrices. A simplified scaled dot-product attention operation is: <strong>softmax(QKᵀ / √dₖ) V</strong>. Multiple heads learn different relationship patterns. The causal mask ensures autoregressive generation cannot use future tokens.</p>
+<h4>Training mechanics</h4><ul><li>Training examples are tokenized and passed through the network.</li><li>The model predicts target next tokens; cross-entropy loss measures prediction error.</li><li>Backpropagation computes gradients; an optimizer updates weights over many batches.</li><li>Distributed training partitions work across accelerators using data, tensor, pipeline, or expert parallelism.</li><li>Post-training may add instruction examples, preference comparisons, reward models, or policy optimization.</li></ul>
+<h4>Inference performance</h4><p><strong>Prefill</strong> processes the prompt and builds attention state. <strong>Decode</strong> generates tokens sequentially. The key-value (KV) cache stores prior attention keys and values so they do not need to be recomputed for every new token. Long prompts increase prefill work; long outputs increase decode work; long contexts consume KV-cache memory.</p>
+<h4>Why the engineering details matter to a PM</h4><ul><li>Token count drives a large part of model cost and context pressure.</li><li>Model size, quantization, batching, and parallelism affect throughput and quality.</li><li>KV-cache capacity can constrain concurrency before raw compute is saturated.</li><li>Temperature changes sampling behavior, not the model's underlying knowledge.</li><li>Model/version, tokenizer, system prompt, and decoding settings should be recorded for reproducibility.</li></ul>
+</div></div>
+<h3>Key questions to be able to answer</h3><div class="question"><b>Why does an LLM hallucinate?</b><p>Because next-token training rewards plausible continuation rather than guaranteed truth. Reduce risk with grounding, source citations, constrained outputs, verification, calibrated uncertainty, and abstention.</p></div><div class="question"><b>Why isn't an LLM a database?</b><p>Weights are distributed learned parameters, not structured, transactionally updated records. Use a database or API as source of truth; use the model to interpret, synthesize, or explain retrieved data.</p></div><div class="question"><b>What does temperature control?</b><p>It rescales logits before sampling. Lower temperature concentrates probability on likely tokens; higher temperature increases diversity. It does not raise factual accuracy.</p></div>
+</section>
 
-    <div class="callout"><strong>How to use this guide.</strong> Treat the questions as prompts for active recall. For each topic, aim to explain the mechanism in plain language, identify alternatives, describe failure modes, and state how you would measure success. The goal is not to memorize jargon.</div>
+<section class="chapter" id="tools"><h2>02 / Tools, agents &amp; MCP</h2><p class="chapter-intro">The action layer: how an LLM interacts with software, data, and workflows—and how to build reliable systems around those interactions.</p>
+<div class="depth"><div class="depth-head"><span>Level 1</span><b>Definition — tools, agents, and MCP</b></div><div class="depth-body"><p>A <strong>tool</strong> is an application capability exposed to a model through a structured interface. An <strong>agent</strong> is a system that uses a model to pursue a goal through iterative decisions and actions. <strong>MCP (Model Context Protocol)</strong> is a standard protocol for connecting AI applications to external tools and context providers.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 2</span><b>What that means — model proposes, software disposes</b></div><div class="depth-body"><p>The model normally does not execute an API call itself. It chooses a declared tool and produces arguments. The host application validates the request, checks identity and permissions, runs the operation, and returns the result. The model can then reason over that result and continue.</p><p>An agent adds a control loop: observe state, choose the next action, execute, inspect the outcome, and decide whether to continue, recover, or stop. MCP standardizes how capabilities and context can be presented to compatible clients; it does not automatically make a tool safe or trustworthy.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 3</span><b>Concepts in this space and what they are used for</b></div><div class="depth-body"><div class="concepts">
+<div class="concept"><b>Tool schema</b><p>Name, description, and typed input parameters. Helps the model select a capability and form arguments.</p></div><div class="concept"><b>Function calling</b><p>Structured model output requesting an application function. Used for APIs, calculations, and actions.</p></div>
+<div class="concept"><b>Orchestrator</b><p>Host-side controller that executes tools, manages state, retries, and routes results.</p></div><div class="concept"><b>Agent loop</b><p>Repeated model/action/observation cycle. Used for multi-step tasks and adaptive workflows.</p></div>
+<div class="concept"><b>State</b><p>Current task progress and intermediate results. Enables continuation, recovery, and auditability.</p></div><div class="concept"><b>Memory</b><p>Persistent or session-level information. Personalizes or resumes work; requires lifecycle and privacy controls.</p></div>
+<div class="concept"><b>Guardrails</b><p>Input/output checks, policy enforcement, and action constraints. Reduce unsafe or invalid behavior.</p></div><div class="concept"><b>Human approval</b><p>Explicit confirmation before consequential actions such as sending, purchasing, or deleting.</p></div>
+<div class="concept"><b>MCP server</b><p>Exposes tools, resources, or prompts to an MCP client.</p></div><div class="concept"><b>MCP client</b><p>Connects an AI host to an MCP server and negotiates capabilities.</p></div>
+<div class="concept"><b>Resources</b><p>Context or data exposed through MCP. Useful for documents, records, and reference material.</p></div><div class="concept"><b>Tool permissions</b><p>Scopes what an agent can read or change. Supports least-privilege design.</p></div>
+</div></div></div>
+<div class="depth"><div class="depth-head"><span>Level 4</span><b>Engineering depth — contracts, execution, and safety</b></div><div class="depth-body">
+<h4>Tool-call lifecycle</h4><ol class="steps"><li>Register tool metadata and a machine-readable argument schema.</li><li>Include only relevant tools in the model request; tool overload can degrade selection.</li><li>Receive a structured tool call and parse it strictly.</li><li>Validate types, ranges, required fields, identity, authorization, and business rules.</li><li>Apply idempotency keys and approval gates for side-effecting operations.</li><li>Execute with timeouts, rate limits, and bounded retries.</li><li>Normalize the result, remove secrets, and return a compact observation to the model.</li><li>Trace the decision, call, result, latency, and failure without logging unnecessary sensitive data.</li></ol>
+<h4>Designing schemas</h4><p>Use narrow, unambiguous names; descriptions that explain when the tool should and should not be used; enums for constrained choices; explicit date/time formats; and required fields only when truly mandatory. Validate again in application code: model-generated JSON is untrusted input.</p>
+<h4>Agent control loop</h4><p>Define a maximum step count, token/cost budget, deadline, allowed tool set, and terminal conditions. Detect repeated calls and loops. Persist checkpoints for long-running tasks. Separate planning from execution where the action is consequential. Make cancellation and recovery first-class behaviors.</p>
+<h4>Reliability and security</h4><ul><li><strong>Prompt injection:</strong> Treat retrieved content and tool output as data, not privileged instructions.</li><li><strong>Confused deputy:</strong> Execute using the user's authorized identity and scope, not a broad service credential by default.</li><li><strong>SSRF/data exfiltration:</strong> Restrict destinations and returned fields.</li><li><strong>Replay/duplicate action:</strong> Use idempotency and operation IDs.</li><li><strong>Partial failure:</strong> Track which steps committed; compensate or expose partial completion clearly.</li><li><strong>Audit:</strong> Record actor, intent, approval, tool, arguments (redacted), result, and timestamp.</li></ul>
+<h4>MCP engineering considerations</h4><p>MCP provides a common protocol surface, but production readiness still depends on transport, authentication, authorization, capability discovery, schema compatibility, server trust, versioning, and operational monitoring. A protocol standardizes the connection; it does not standardize the quality or safety of every connected service.</p>
+</div></div>
+<div class="question"><b>Agent versus chatbot?</b><p>Ask whether the system can autonomously choose and sequence actions, observe outcomes, maintain task state, and recover—not simply whether it has a tool button.</p></div><div class="question"><b>Why can a vague tool description be dangerous?</b><p>The model may choose it incorrectly or supply ambiguous arguments. Poor contracts increase invalid calls, retries, and unintended side effects.</p></div>
+</section>
 
-    <section id="fundamentals">
-      <h2>01 / LLM fundamentals</h2>
-      <h3>How an LLM actually works</h3>
-      <p>A large language model is a neural network—usually a transformer—trained to predict the next token in a sequence. Text is tokenized, converted into vectors, processed through layers of attention and feed-forward networks, and used to produce a probability distribution over the next token. Generation repeats until a stopping condition is reached.</p>
-      <div class="grid">
-        <div class="concept"><strong>Tokens</strong><p>Units of text processed by the model. A token may be a word, part of a word, punctuation, or whitespace.</p></div>
-        <div class="concept"><strong>Embeddings</strong><p>Dense numerical vectors representing tokens or other content in a learned semantic space.</p></div>
-        <div class="concept"><strong>Attention</strong><p>Lets each token incorporate information from other relevant tokens in the context.</p></div>
-        <div class="concept"><strong>Model weights</strong><p>Learned numerical parameters encoding patterns acquired during training. They are not a searchable store of facts.</p></div>
-        <div class="concept"><strong>Context window</strong><p>The maximum input and generated content considered in one request. Beyond it, content must be omitted, compressed, or selectively retrieved.</p></div>
-        <div class="concept"><strong>Next-token prediction</strong><p>The model predicts a distribution for the next token; decoding selects or samples one, appends it, and repeats.</p></div>
-      </div>
-      <h3>Pre-training versus post-training</h3>
-      <ul>
-        <li><strong>Pre-training:</strong> Learns broad language and world-pattern representations from large datasets, commonly using next-token prediction.</li>
-        <li><strong>Post-training:</strong> Shapes the pretrained model for useful behavior through supervised fine-tuning, preference optimization, and safety training.</li>
-        <li><strong>Fine-tuning:</strong> Further trains weights on a targeted dataset or task. It changes behavior; it is not the same as supplying live facts.</li>
-        <li><strong>Prompting:</strong> Changes instructions and context without changing model weights.</li>
-      </ul>
-      <h3>What does temperature control?</h3>
-      <p>Temperature changes the sharpness of the token probability distribution during sampling. Lower values make high-probability tokens more dominant; higher values increase variety and unpredictability. Temperature 0 is typically close to greedy decoding, although implementation details matter. Temperature does not make a model more knowledgeable.</p>
-      <h3>Why do models hallucinate?</h3>
-      <p>A model is optimized to generate plausible continuations, not guarantee truth. It can lack knowledge, misread context, rely on weak patterns, or confidently fill gaps.</p>
-      <div class="callout"><strong>PM response:</strong> Ground answers in trusted sources, constrain tasks, expose uncertainty, validate important claims, and provide abstention or escalation paths. Measure factuality and impact in real usage.</div>
-      <h3>Why isn't an LLM a database?</h3>
-      <p>A database stores and retrieves records with explicit schemas and query semantics. Model weights encode statistical patterns, not a reliable, current, row-addressable source of truth. Use databases for authoritative records; use retrieval or tools to bring relevant data into a model request.</p>
-      <h3>Why can identical prompts produce different answers?</h3>
-      <p>Sampling, nondeterministic hardware execution, serving infrastructure, model/version changes, hidden system context, and tool results can affect outputs. Reproducibility requires controlling variables and recording model and configuration versions.</p>
-    </section>
+<section class="chapter" id="rag"><h2>03 / RAG &amp; context engineering</h2><p class="chapter-intro">The knowledge layer: connecting a model to current, private, attributable information without pretending that the model weights are a live source of truth.</p>
+<div class="depth"><div class="depth-head"><span>Level 1</span><b>Definition — what is RAG?</b></div><div class="depth-body"><p><strong>Retrieval-augmented generation (RAG)</strong> is a pattern in which an application retrieves relevant information from external sources and supplies it to a language model as context for generating a response.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 2</span><b>What that means — separating knowledge from reasoning</b></div><div class="depth-body"><p>The model provides language understanding and synthesis. A retrieval system finds relevant source material. The application combines the two so answers can reflect private, recent, or domain-specific knowledge and can point back to evidence.</p><p>RAG is not simply “put documents in a vector database.” It is a data pipeline, search/relevance system, context-construction problem, and generation/evaluation problem. The weakest stage can dominate end-to-end quality.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 3</span><b>Concepts in this space and what they are used for</b></div><div class="depth-body"><div class="concepts">
+<div class="concept"><b>Ingestion</b><p>Connects to source systems and extracts content for indexing.</p></div><div class="concept"><b>Parsing</b><p>Extracts text, structure, tables, and metadata from source formats.</p></div>
+<div class="concept"><b>Chunking</b><p>Splits content into retrieval units while preserving meaning and references.</p></div><div class="concept"><b>Embedding model</b><p>Maps text to vectors for semantic similarity search.</p></div>
+<div class="concept"><b>Vector index</b><p>Supports nearest-neighbor search over embeddings.</p></div><div class="concept"><b>Keyword/BM25 search</b><p>Finds lexical matches; useful for exact names, codes, and phrases.</p></div>
+<div class="concept"><b>Hybrid retrieval</b><p>Combines lexical and semantic candidates to improve coverage.</p></div><div class="concept"><b>Reranker</b><p>Re-scores candidate passages for query relevance.</p></div>
+<div class="concept"><b>Metadata filters</b><p>Constrain results by tenant, time, document type, or access scope.</p></div><div class="concept"><b>Grounding/citations</b><p>Connects generated claims to source passages for verification.</p></div>
+<div class="concept"><b>Query rewriting</b><p>Reformulates ambiguous or conversational queries for retrieval.</p></div><div class="concept"><b>Context assembly</b><p>Selects and orders evidence within token and latency budgets.</p></div>
+</div><p><strong>RAG, fine-tuning, or prompt?</strong> Prompt for instructions; RAG for external and changing knowledge; fine-tune for stable behavior, style, or task patterns. Combine them when each solves a distinct problem.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 4</span><b>Engineering depth — from source system to grounded answer</b></div><div class="depth-body">
+<h4>Offline ingestion path</h4><ol class="steps"><li>Connect to authoritative sources with least-privilege credentials.</li><li>Extract documents and preserve source ID, owner, tenant, ACL, timestamps, and version.</li><li>Parse content, retaining headings, table relationships, page references, and document hierarchy.</li><li>Normalize, deduplicate, classify, and apply data-quality checks.</li><li>Chunk by semantic boundaries; attach metadata to every chunk.</li><li>Generate embeddings with a versioned embedding model.</li><li>Write vectors and searchable text to indexes; record ingestion status and source version.</li><li>Incrementally update changed content and propagate deletions or permission changes.</li></ol>
+<h4>Online retrieval path</h4><ol class="steps"><li>Authenticate the user and determine the effective access scope.</li><li>Interpret the query; optionally rewrite, expand, or decompose it.</li><li>Run lexical, vector, or hybrid retrieval with security filters applied.</li><li>Merge candidates and rerank them against the query.</li><li>Deduplicate, diversify, and select evidence based on relevance and coverage.</li><li>Fit selected passages into the context budget, retaining provenance.</li><li>Generate an answer with instructions to use evidence and signal missing support.</li><li>Validate citations and claims; return answer plus source links.</li></ol>
+<h4>Engineering choices and trade-offs</h4><ul><li><strong>Chunk size:</strong> Small chunks improve focus but can lose context; large chunks preserve context but dilute relevance and consume tokens.</li><li><strong>Overlap:</strong> Helps preserve boundary information but increases index size and duplicate retrieval.</li><li><strong>Embedding choice:</strong> Evaluate domain language, multilingual coverage, dimensions, latency, and index cost.</li><li><strong>Hybrid weighting:</strong> Tune lexical/vector fusion against real queries; do not assume vector search always wins.</li><li><strong>Freshness:</strong> Use event-driven updates or short sync intervals where source changes matter.</li><li><strong>Security:</strong> Apply ACL filters before content reaches the model; post-filtering alone can leak restricted data into prompts or logs.</li></ul>
+<h4>Measure each stage independently</h4><p>Retrieval: recall@k, precision@k, MRR, nDCG, and ACL correctness. Generation: claim support, citation precision, answer relevance, abstention quality, and unsupported-claim rate. System: ingestion lag, index freshness, p95 latency, tokens per answer, and cost per successful task.</p>
+</div></div>
+<div class="question"><b>What are the two major RAG failure modes?</b><p>Retrieval failure (the evidence is not found) and grounding failure (the evidence is found but the answer does not faithfully use it). Diagnose them separately.</p></div><div class="question"><b>When is RAG overkill?</b><p>When a deterministic query/API, a small stable prompt context, or the model's general capability already meets the requirement more simply and safely.</p></div>
+</section>
 
-    <section id="tools">
-      <h2>02 / Tools, agents &amp; MCP</h2>
-      <h3>How tool and function calling works</h3>
-      <p>A model generally does not execute an external function itself. It emits a structured tool request; the application validates and authorizes it, executes the function, and returns the result to the model.</p>
-      <ol class="steps">
-        <li>The application sends messages and available tool definitions to the model.</li>
-        <li>The model requests a tool with a name and structured arguments.</li>
-        <li>The orchestrator validates arguments, permissions, and policy.</li>
-        <li>The application executes the tool and returns its output.</li>
-        <li>The model interprets the result or requests another tool.</li>
-      </ol>
-      <h3>What makes a good tool definition?</h3>
-      <p>A tool definition usually includes a name, natural-language description, and input schema. The description helps the model decide when to use it; the schema constrains arguments. Vague descriptions, overlapping tools, or permissive schemas reduce reliability.</p>
-      <h3>Prompt versus tool versus skill</h3>
-      <ul>
-        <li><strong>Prompt:</strong> Instructions and context for a model invocation.</li>
-        <li><strong>Tool:</strong> A callable capability that performs an action or retrieves information.</li>
-        <li><strong>Skill:</strong> Reusable domain instructions, procedures, and supporting knowledge that guide how work is performed.</li>
-      </ul>
-      <h3>What makes an agent different from a chatbot?</h3>
-      <p>A chatbot primarily responds to user turns. An agent can pursue a goal over multiple steps, maintain state, choose tools, observe results, recover from failures, and decide when the task is complete. Adding a tool call alone does not necessarily make a system meaningfully agentic.</p>
-      <h3>What does agent memory mean?</h3>
-      <p>Memory may include short-lived conversation state, persistent preferences, task state, or an external knowledge store. Decide what is remembered, for how long, how it can be corrected or deleted, and what permissions govern its use. The context window is not durable memory.</p>
-      <h3>What is MCP?</h3>
-      <p>The Model Context Protocol (MCP) is an open protocol for connecting AI applications to external tools and context providers through a standardized interface. It can reduce bespoke integration work, but does not remove the need for authentication, authorization, validation, observability, versioning, and security review. Compare MCP with one-off APIs based on reuse, interoperability, overhead, and control.</p>
-    </section>
+<section class="chapter" id="orchestration"><h2>04 / Orchestration &amp; routing</h2><p class="chapter-intro">The workflow layer: coordinating models, tools, state, and decisions while balancing control, flexibility, latency, and cost.</p>
+<div class="depth"><div class="depth-head"><span>Level 1</span><b>Definition — orchestration and routing</b></div><div class="depth-body"><p><strong>Orchestration</strong> is the control logic that coordinates model calls, tools, data, and workflow steps. <strong>Model routing</strong> is the decision process that selects which model or execution path should handle a request.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 2</span><b>What that means — the conductor, not the instrument</b></div><div class="depth-body"><p>The model is one component in a larger application. Orchestration decides what context to send, which capability to invoke, what to do with results, whether to retry, and when to stop. Routing decides whether a task goes to a fast/cheap model, a stronger model, a specialized model, or deterministic code.</p><p>Frameworks can simplify stateful flows, but they do not remove the need to understand the underlying control plane. An abstraction is useful when it makes the workflow easier to reason about, test, and operate.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 3</span><b>Concepts in this space and what they are used for</b></div><div class="depth-body"><div class="concepts">
+<div class="concept"><b>Workflow graph</b><p>Nodes represent operations and edges represent transitions. Useful for branching and cyclic workflows.</p></div><div class="concept"><b>State machine</b><p>Explicit states and transitions. Useful for predictable lifecycle and recovery.</p></div>
+<div class="concept"><b>Planner</b><p>Breaks a goal into steps. Useful when tasks require sequencing or decomposition.</p></div><div class="concept"><b>Router/classifier</b><p>Classifies task or complexity to choose model, tool, or path.</p></div>
+<div class="concept"><b>Fallback</b><p>Alternative model or path when the primary route fails or exceeds limits.</p></div><div class="concept"><b>Retry/backoff</b><p>Recovers from transient failures while avoiding retry storms.</p></div>
+<div class="concept"><b>Checkpoint</b><p>Persists progress so long-running tasks can resume after interruption.</p></div><div class="concept"><b>Parallel execution</b><p>Runs independent tasks concurrently to reduce wall-clock time.</p></div>
+<div class="concept"><b>LangChain</b><p>Provides integrations and abstractions for common LLM application components.</p></div><div class="concept"><b>LangGraph</b><p>Supports stateful graph orchestration and controlled loops.</p></div>
+<div class="concept"><b>Budget policy</b><p>Constrains time, tokens, tool calls, and spend per task.</p></div><div class="concept"><b>Routing policy</b><p>Encodes quality, latency, privacy, availability, and cost requirements.</p></div>
+</div></div></div>
+<div class="depth"><div class="depth-head"><span>Level 4</span><b>Engineering depth — workflow execution and model selection</b></div><div class="depth-body">
+<h4>Reference execution architecture</h4><ol class="steps"><li>Accept request; authenticate user and resolve tenant and policy context.</li><li>Classify intent, risk, modality, complexity, and required capabilities.</li><li>Select a route using explicit rules, a classifier, or a learned router.</li><li>Assemble context and execute a model or deterministic step.</li><li>Validate structured output and determine the next workflow transition.</li><li>Invoke tools or parallel branches with bounded concurrency.</li><li>Persist state/checkpoints and emit trace events.</li><li>Apply terminal checks, response shaping, and user-visible completion status.</li></ol>
+<h4>Model-routing decision variables</h4><ul><li>Task quality threshold and error cost.</li><li>Input modality and context length.</li><li>Latency SLO, throughput, and current provider capacity.</li><li>Price per input/output token and expected token volume.</li><li>Data residency, privacy, and model availability requirements.</li><li>Tool-calling reliability, structured output support, and safety behavior.</li></ul>
+<h4>Cost and latency mechanics</h4><p>Measure end-to-end cost per successful task: model tokens, embedding/reranking, tools, retries, orchestration, storage, and human review. Latency includes queueing, network, prefill, decode, tool execution, and serial dependencies. Parallelism reduces wall-clock time only when branches are independent and capacity is available; it can increase total compute and coordination overhead.</p>
+<h4>Framework versus raw SDK</h4><p>Use a raw SDK for a small, linear flow where explicit code is easiest to inspect. Consider a framework when state, branching, persistence, retries, and human hand-offs become reusable infrastructure. Evaluate debuggability, observability, upgrade risk, vendor coupling, and the ability to inspect every transition.</p>
+</div></div>
+<div class="question"><b>How do you route at millions of calls?</b><p>Use task-aware routing, quality gates, fallback paths, and per-route telemetry. Optimize cost per successful task rather than simply sending every request to the cheapest model.</p></div>
+</section>
 
-    <section id="rag">
-      <h2>03 / RAG &amp; context engineering</h2>
-      <h3>Walk through a RAG pipeline</h3>
-      <p>Retrieval-augmented generation retrieves relevant external information and supplies it to the model as context, helping it answer using private, changing, or otherwise unavailable data.</p>
-      <ol class="steps">
-        <li><strong>Ingest:</strong> Connect to source systems and extract documents.</li>
-        <li><strong>Prepare:</strong> Clean, normalize, and enrich content with metadata and access controls.</li>
-        <li><strong>Chunk:</strong> Divide content into passages while preserving semantic boundaries.</li>
-        <li><strong>Embed and index:</strong> Convert chunks into vectors and store them with metadata.</li>
-        <li><strong>Retrieve:</strong> Find candidates using vector, keyword, or hybrid search.</li>
-        <li><strong>Rerank and filter:</strong> Improve relevance, apply permissions, and remove unsuitable results.</li>
-        <li><strong>Assemble context:</strong> Select passages and citations within the token budget.</li>
-        <li><strong>Generate:</strong> Ask the model to answer using the evidence.</li>
-        <li><strong>Evaluate:</strong> Measure retrieval quality, groundedness, latency, cost, and user outcomes.</li>
-      </ol>
-      <h3>RAG versus fine-tuning versus prompting</h3>
-      <div class="table-wrap"><table><thead><tr><th>Approach</th><th>Best suited for</th><th>Main limitation</th></tr></thead><tbody>
-        <tr><td><strong>Prompting</strong></td><td>Instructions, formatting, examples, task framing</td><td>Does not reliably add large or changing knowledge</td></tr>
-        <tr><td><strong>RAG</strong></td><td>Current, private, source-grounded information</td><td>Retrieval can miss or mis-rank evidence</td></tr>
-        <tr><td><strong>Fine-tuning</strong></td><td>Consistent behavior, style, task patterns, formats</td><td>Updating facts is costly; facts may not be reliably retrievable</td></tr>
-      </tbody></table></div>
-      <p>These approaches can be combined: fine-tune a format, retrieve current policies, and prompt for the task.</p>
-      <h3>Vector databases and embeddings</h3>
-      <p>A vector database stores embeddings and supports similarity search. It is useful when semantic similarity matters, but keyword search is often better for exact identifiers, names, and codes. Hybrid search combines strengths.</p>
-      <h3>Chunking: what matters?</h3>
-      <p>Chunk size and overlap influence retrieval precision, context cost, and whether a passage retains enough meaning. Chunk by document structure where possible; preserve titles, headings, source IDs, timestamps, and access metadata. Evaluate choices against representative queries.</p>
-      <h3>How do you handle frequently changing information?</h3>
-      <p>Use authoritative connectors, incremental ingestion, freshness metadata, deletion propagation, and cache invalidation. For rapidly changing or transactional facts, call the source system at request time rather than relying only on an asynchronously refreshed index.</p>
-      <h3>Two broad RAG failure modes</h3>
-      <ul><li><strong>Retrieval failure:</strong> Relevant evidence is not found or is ranked too low.</li><li><strong>Generation/grounding failure:</strong> Evidence is retrieved, but the model misinterprets it, ignores it, or makes unsupported claims.</li></ul>
-      <p>Diagnose these separately. A better model will not fix broken retrieval, and better retrieval will not guarantee faithful generation.</p>
-      <h3>Context engineering versus prompt engineering</h3>
-      <p>Prompt engineering focuses on instruction wording. Context engineering designs all information supplied to the model: system instructions, conversation state, retrieved evidence, tool outputs, memory, ordering, metadata, and token allocation.</p>
-      <h3>When is RAG overkill?</h3>
-      <p>RAG may be unnecessary when facts are few and stable, a deterministic API can answer directly, the model already has sufficient general knowledge, or complexity outweighs value. Prefer the simplest architecture that meets accuracy, freshness, privacy, and latency requirements.</p>
-    </section>
+<section class="chapter" id="design"><h2>05 / System design &amp; trade-offs</h2><p class="chapter-intro">The product architecture layer: choosing the right combination of models, conventional software, data, infrastructure, and human judgment to solve a real user problem.</p>
+<div class="depth"><div class="depth-head"><span>Level 1</span><b>Definition — AI system design</b></div><div class="depth-body"><p><strong>AI system design</strong> is the end-to-end design of a product capability that uses one or more AI models alongside software, data, infrastructure, and operational controls to achieve a user or business outcome.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 2</span><b>What that means — start with the job, not the model</b></div><div class="depth-body"><p>The first question is not “which LLM should we use?” It is “what user task is failing today, and what capability would improve it?” Then determine whether AI is necessary, what level of autonomy is appropriate, what errors cost, and what constraints apply.</p><p>A product architecture may combine rules for policy, databases for truth, classical ML for prediction, an LLM for language tasks, retrieval for evidence, tools for action, and humans for judgment or approval.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 3</span><b>Concepts in this space and what they are used for</b></div><div class="depth-body"><div class="concepts">
+<div class="concept"><b>Problem framing</b><p>Defines user, job, pain, frequency, and value before choosing technology.</p></div><div class="concept"><b>Functional requirements</b><p>Describe what the system must do and the workflow it supports.</p></div>
+<div class="concept"><b>Non-functional requirements</b><p>Latency, availability, scale, privacy, security, and accessibility constraints.</p></div><div class="concept"><b>Build/buy/fine-tune</b><p>Selects hosted model, self-hosting, or weight adaptation based on needs.</p></div>
+<div class="concept"><b>Hybrid architecture</b><p>Combines deterministic code, ML, LLM, retrieval, and human review.</p></div><div class="concept"><b>Inference capacity</b><p>Maps traffic, token lengths, concurrency, and SLOs to accelerator requirements.</p></div>
+<div class="concept"><b>Prefill/decode</b><p>Separates prompt processing from token generation for performance planning.</p></div><div class="concept"><b>GPU memory</b><p>Holds weights, activations, and KV cache; often a key capacity constraint.</p></div>
+<div class="concept"><b>Batching</b><p>Combines requests to improve accelerator utilization while managing latency.</p></div><div class="concept"><b>Quantization</b><p>Uses lower-precision representations to reduce memory and sometimes improve throughput.</p></div>
+<div class="concept"><b>Fallback design</b><p>Provides degraded but useful behavior when model/tool paths fail.</p></div><div class="concept"><b>Human-in-the-loop</b><p>Places review or approval where risk, ambiguity, or impact justifies it.</p></div>
+</div></div></div>
+<div class="depth"><div class="depth-head"><span>Level 4</span><b>Engineering depth — architecture, capacity, and failure design</b></div><div class="depth-body">
+<h4>Example: summarize unread messages</h4><ol class="steps"><li>Resolve user identity and mailbox/message permissions.</li><li>Fetch unread messages and thread context from authoritative APIs.</li><li>Filter duplicates, classify relevance, and prioritize important items.</li><li>Build a context package with source IDs, timestamps, and thread relationships.</li><li>Call a suitable model with a bounded summary schema and evidence instructions.</li><li>Validate output structure and check citations against retrieved messages.</li><li>Present summary, source links, and actions separately; never silently perform consequential actions.</li><li>Collect corrections and usage signals to improve the evaluation set.</li></ol>
+<h4>Capacity estimation for 10 million users</h4><p>Estimate daily active users × requests per user × input/output tokens, then model peak-to-average ratio and concurrency. Benchmark tokens/sec per accelerator at the target model, context length, batch size, and latency. Account for prefill/decode balance, KV-cache memory, model replicas, tensor/pipeline parallelism, utilization headroom, redundancy, and regional capacity. Convert required throughput into accelerator-hours and fully loaded cost.</p>
+<h4>GPU serving mechanics</h4><ul><li><strong>Weights:</strong> Model parameters must fit in accelerator memory or be sharded/offloaded.</li><li><strong>KV cache:</strong> Grows with active sequences, context length, layers, and attention heads; can cap concurrent sessions.</li><li><strong>Batching:</strong> Improves utilization but may increase queueing and tail latency.</li><li><strong>Quantization:</strong> Reduces bytes per parameter and memory traffic, with possible quality/accuracy trade-offs.</li><li><strong>Parallelism:</strong> Tensor parallelism splits layer computation; pipeline parallelism splits model stages; data parallelism replicates models/requests.</li><li><strong>Networking:</strong> Multi-GPU execution may depend on high-bandwidth, low-latency interconnects.</li></ul>
+<h4>Failure and degradation strategy</h4><p>Define behavior for model timeout, rate limit, malformed response, tool outage, retrieval miss, stale source, and partial completion. Use bounded retries, circuit breakers, fallback models or deterministic paths, queue limits, cancellation, and human escalation. Make degraded states visible to users instead of presenting partial output as complete.</p>
+<h4>Decision matrix</h4><div class="table-wrap"><table><thead><tr><th>Need</th><th>Likely fit</th><th>Watch-out</th></tr></thead><tbody><tr><td>Exact arithmetic or policy rule</td><td>Deterministic code</td><td>Keep rules current and tested</td></tr><tr><td>Structured tabular prediction</td><td>Gradient-boosted trees / classical ML</td><td>Data leakage and drift</td></tr><tr><td>Current private knowledge</td><td>RAG or direct API</td><td>ACL, freshness, retrieval quality</td></tr><tr><td>Language synthesis and interaction</td><td>LLM</td><td>Hallucination, cost, latency</td></tr><tr><td>High-impact ambiguous decision</td><td>AI assistance plus human approval</td><td>Automation bias and review burden</td></tr></tbody></table></div>
+</div></div>
+</section>
 
-    <section id="orchestration">
-      <h2>04 / Orchestration &amp; routing</h2>
-      <h3>What is orchestration?</h3>
-      <p>Orchestration coordinates models, tools, data, and workflow steps. It manages sequencing, state, retries, timeouts, branching, permissions, and failure handling.</p>
-      <h3>LangChain versus LangGraph</h3>
-      <p>LangChain provides abstractions and integrations for LLM applications. LangGraph focuses on stateful, graph-based orchestration, including cycles and controlled agent workflows. Choose based on workflow complexity and required control—not popularity.</p>
-      <h3>Raw SDK versus framework</h3>
-      <p>A raw SDK call can be simpler, transparent, and easier to optimize for a small workflow. A framework helps when integrations, state, branching, or reusable orchestration become substantial. Abstraction adds value only when it reduces total complexity.</p>
-      <h3>What is model routing?</h3>
-      <p>A router selects a model or execution path based on task complexity, modality, latency target, cost budget, privacy constraints, and quality requirements. It may use a classifier, explicit rules, confidence, and fallback paths.</p>
-      <h3>How does routing affect unit economics?</h3>
-      <p>At high call volumes, small per-request cost differences compound. Measure total cost per successful task, not just token cost. Include retries, tools, retrieval, guardrails, evaluation, caching, and human review. Cheaper routing is useful only if quality and completion remain acceptable.</p>
-      <h3>Four useful layers of an AI product stack</h3>
-      <div class="grid">
-        <div class="concept"><strong>1. Experience</strong><p>User interface, workflow, and feedback.</p></div>
-        <div class="concept"><strong>2. Orchestration</strong><p>Prompts, context assembly, routing, tools, and agent control.</p></div>
-        <div class="concept"><strong>3. Intelligence</strong><p>Models, embeddings, rerankers, and evaluation models.</p></div>
-        <div class="concept"><strong>4. Data &amp; infrastructure</strong><p>Sources, indexes, storage, compute, security, and observability.</p></div>
-      </div>
-      <p>This is a practical mental model, not a universal standard.</p>
-      <h3>How do you sequence multiple agents?</h3>
-      <p>Use multiple agents when roles require distinct context, permissions, tools, or independently verifiable responsibilities. Define ownership, hand-offs, shared state, termination, and conflict resolution. Parallel agents can increase latency, cost, and coordination failures.</p>
-    </section>
+<section class="chapter" id="evaluation"><h2>06 / Evals, metrics &amp; observability</h2><p class="chapter-intro">The quality and operations layer: measuring whether an AI system works for real users, diagnosing why it fails, and preventing regressions as models and data change.</p>
+<div class="depth"><div class="depth-head"><span>Level 1</span><b>Definition — evaluation and observability</b></div><div class="depth-body"><p><strong>Evaluation</strong> is the systematic measurement of model or product behavior against defined criteria. <strong>Observability</strong> is the ability to understand the internal state of a running system from its emitted traces, metrics, and logs.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 2</span><b>What that means — quality is a product property</b></div><div class="depth-body"><p>A model benchmark is not the same as product success. The feature may produce fluent answers while failing the user's task, missing important cases, taking too long, or eroding trust. Evaluate the full workflow and segment results by user, task, risk, and operating condition.</p><p>Because model outputs are variable, evaluation often measures distributions and pass rates across repeated runs rather than exact string matches. Offline tests catch regressions before release; online monitoring detects changes in real traffic.</p></div></div>
+<div class="depth"><div class="depth-head"><span>Level 3</span><b>Concepts in this space and what they are used for</b></div><div class="depth-body"><div class="concepts">
+<div class="concept"><b>Golden dataset</b><p>Versioned representative examples used for repeatable regression testing.</p></div><div class="concept"><b>Rubric</b><p>Explicit criteria for scoring correctness, relevance, completeness, and safety.</p></div>
+<div class="concept"><b>Precision</b><p>Of predicted positives, fraction that are truly positive; important when false positives hurt.</p></div><div class="concept"><b>Recall</b><p>Of actual positives, fraction found; important when missing cases hurts.</p></div>
+<div class="concept"><b>F1</b><p>Harmonic mean of precision and recall; balances the two but hides their individual trade-off.</p></div><div class="concept"><b>LLM-as-judge</b><p>Uses a model to score outputs against a rubric; scales review but needs human calibration.</p></div>
+<div class="concept"><b>Human evaluation</b><p>Expert or user review for nuanced quality and high-impact cases.</p></div><div class="concept"><b>Faithfulness</b><p>Measures whether generated claims are supported by supplied evidence.</p></div>
+<div class="concept"><b>Retrieval metrics</b><p>Recall@k, precision@k, MRR, and nDCG assess retrieval and ranking.</p></div><div class="concept"><b>Tracing</b><p>Connects model calls, retrieval, tools, and workflow steps for diagnosis.</p></div>
+<div class="concept"><b>Online signals</b><p>Edits, retries, abandonment, acceptance, escalation, and user ratings.</p></div><div class="concept"><b>Drift/regression</b><p>Detects quality changes due to models, prompts, data, traffic, or dependencies.</p></div>
+</div></div></div>
+<div class="depth"><div class="depth-head"><span>Level 4</span><b>Engineering depth — build the evaluation and telemetry loop</b></div><div class="depth-body">
+<h4>Evaluation pipeline</h4><ol class="steps"><li>Define user outcome, risk tiers, and failure cost.</li><li>Sample real tasks; de-identify and curate representative cases.</li><li>Label expected properties and evidence; document adjudication rules.</li><li>Build deterministic validators for schema, permissions, calculations, and policy.</li><li>Use human raters for nuanced dimensions; measure inter-rater agreement.</li><li>Use LLM judges only after calibration against human ratings; test judge bias.</li><li>Run repeated trials for stochastic behavior and report confidence intervals or pass-rate distributions.</li><li>Set launch thresholds, segment-level guardrails, and rollback criteria.</li><li>Run shadow/canary experiments, then monitor online quality and feedback.</li></ol>
+<h4>Testing pyramid</h4><ul><li><strong>Unit:</strong> Parsing, schema validation, access checks, deterministic business logic.</li><li><strong>Component:</strong> Retrieval, tool adapters, prompt/context construction, model wrappers.</li><li><strong>AI eval:</strong> Golden cases, adversarial prompts, repeated runs, rubric scoring.</li><li><strong>End-to-end:</strong> Complete user workflows with realistic dependencies.</li><li><strong>Production:</strong> Quality, cost, latency, errors, drift, and user outcomes.</li></ul>
+<h4>Observability schema</h4><p>Trace request ID, user/tenant scope (appropriately protected), model and version, prompt template version, token counts, context sources, retrieval scores, tool names and outcomes, latency by stage, retries, errors, estimated cost, safety interventions, and feedback. Avoid logging raw sensitive prompts or documents unless there is a justified, access-controlled retention policy.</p>
+<h4>Diagnosing a quality drop</h4><p>Segment the drop by task type, user cohort, model route, geography/region, language, and release version. Compare model, prompt, retrieval index, source freshness, tool behavior, traffic mix, and evaluator version. Determine whether the issue is retrieval recall, ranking, context assembly, model reasoning, output validation, or UX before selecting a fix.</p>
+<h4>Offline pass, unhappy users</h4><p>Check whether test cases represent actual workflows; whether users can discover and understand the feature; whether latency interrupts the task; whether answers omit context users consider obvious; whether trust and control are adequate; and whether the metric rewards a proxy instead of the outcome. Add user-derived cases to the evaluation set.</p>
+</div></div>
+</section>
 
-    <section id="design">
-      <h2>05 / System design &amp; trade-offs</h2>
-      <h3>Design an AI feature: summarize unread messages</h3>
-      <p>Start with the user problem: help someone catch up quickly without missing important information. Define user, message sources, freshness, and what makes a summary useful.</p>
-      <ul>
-        <li>Permission-aware message retrieval.</li><li>Prioritization of relevant unread messages.</li><li>Summarization with citations or links to source messages.</li><li>UI distinguishing facts, inferred themes, and suggested actions.</li><li>Feedback controls and access to original messages.</li>
-      </ul>
-      <p>Measure time saved, useful coverage, factuality, trust, and follow-through—not summary length. Test long threads, conflicting messages, attachments, and access changes.</p>
-      <h3>Latency versus quality versus cost</h3>
-      <p>These objectives compete. Larger models and more retrieval or reasoning steps may improve quality but increase cost and latency. Set a quality threshold, then optimize with routing, caching, smaller models, parallelism, shorter context, and selective tool use. Track p50/p95 latency, cost per successful task, and quality together.</p>
-      <h3>Build versus buy versus fine-tune</h3>
-      <ul><li><strong>Buy/use a hosted model:</strong> Fastest path; assess data handling, reliability, cost, customization, and vendor dependency.</li><li><strong>Build/self-host:</strong> More deployment, data, and optimization control; requires serving expertise and infrastructure operations.</li><li><strong>Fine-tune:</strong> Consider when repeatable behavior cannot be achieved economically with prompting and retrieval. It is not the default way to keep facts current.</li></ul>
-      <h3>Why not use an LLM for everything?</h3>
-      <p>LLMs are probabilistic and can be expensive, slow, and difficult to validate. Use deterministic code, databases, rules, and conventional ML when they solve the problem more reliably. Hybrid systems often offer the best experience.</p>
-      <h3>Why XGBoost over an LLM for tabular prediction?</h3>
-      <p>For structured, labeled tabular data, gradient-boosted trees such as XGBoost can be more accurate, cheaper, faster, and easier to evaluate than a general-purpose LLM. Use an LLM when language understanding, unstructured context, or natural-language interaction is central.</p>
-      <h3>What does a hybrid AI system look like?</h3>
-      <p>A hybrid system combines deterministic software, conventional ML, LLMs, retrieval, and human judgment. For example, rules enforce eligibility, a classifier prioritizes cases, an LLM summarizes evidence, and a human approves high-impact decisions.</p>
-      <h3>What role do GPUs play in cost?</h3>
-      <p>GPU cost depends on accelerator type/count, memory capacity and bandwidth, utilization, model size, sequence length, batching, parallelism, serving overhead, power, networking, and availability. For inference, distinguish <strong>prefill</strong> (processing input tokens) from <strong>decode</strong> (generating output tokens). Capacity planning should model traffic shape and latency SLOs, not just average tokens per day.</p>
-      <h3>Estimate inference cost for 10 million users</h3>
-      <p>Do not estimate from user count alone. Model active users per day, requests per user, input/output tokens, peak concurrency, model mix, routing, caching, retries, tool calls, throughput per accelerator at target latency, replication, and utilization headroom. Estimate accelerator-hours and multiply by fully loaded cost per accelerator-hour. Validate with production-like benchmarks; theoretical peak FLOPs are not serving throughput.</p>
-      <h3>How do you design for failure?</h3>
-      <p>Plan for tool timeouts, rate limits, malformed outputs, unavailable models, retrieval outages, stale data, and partial completion. Use bounded retries with backoff, idempotency, circuit breakers, fallbacks, clear messaging, and human escalation for consequential workflows.</p>
-      <h3>Where do you draw safety redlines?</h3>
-      <p>Define prohibited actions, allowed data, consent, permission checks, human approval thresholds, and escalation. Enforce critical controls in application code and tool permissions—not only prompts. Test prompt injection, data leakage, adversarial inputs, and unsafe tool use.</p>
-      <h3>Models improve monthly. What stays constant?</h3>
-      <p>Model capabilities and prices change quickly. Durable product work includes customer understanding, workflow integration, data quality and rights, trust, evaluation, security, distribution, reliability, and measurable outcomes. Keep architecture modular enough to change models without rebuilding the product.</p>
-    </section>
+<section class="chapter" id="company"><h2>07 / Interview themes across AI companies</h2><p class="chapter-intro">Use these as practice prompts from the supplied infographic, not as verified or official interview question banks.</p>
+<div class="table-wrap"><table><thead><tr><th>Company</th><th>Question theme</th><th>What a strong answer should demonstrate</th></tr></thead><tbody>
+<tr><td><strong>OpenAI</strong></td><td>Hallucinations; 10× capability at 10× cost</td><td>Reliability strategy, marginal value, cost/quality curves, customer segmentation, and pricing/packaging judgment.</td></tr>
+<tr><td><strong>Anthropic</strong></td><td>Production hallucination handling; model redlines</td><td>Risk taxonomy, policy boundaries, abstention, human escalation, and launch gates.</td></tr>
+<tr><td><strong>Google</strong></td><td>Productivity agents; high-level Gemini response system</td><td>Workflow design, grounding, orchestration, permissions, and measurable productivity.</td></tr>
+<tr><td><strong>NVIDIA</strong></td><td>GPU role in deep learning; RAG trade-offs</td><td>Compute/memory fundamentals, serving capacity, utilization, latency, and system economics.</td></tr>
+<tr><td><strong>Perplexity</strong></td><td>Explain end-to-end RAG</td><td>Ingestion, hybrid retrieval, reranking, citations, freshness, and faithfulness evaluation.</td></tr>
+<tr><td><strong>Glean</strong></td><td>End-to-end agentic systems</td><td>Enterprise context, identity/ACL propagation, tool orchestration, task state, and governance.</td></tr>
+<tr><td><strong>Microsoft</strong></td><td>Model selection; system design for an AI experience</td><td>Trade-offs across model quality, cost, latency, data boundary, platform integration, and user experience.</td></tr>
+<tr><td><strong>Amazon</strong></td><td>When to use ML to solve a problem</td><td>Problem framing, baseline alternatives, data readiness, measurable lift, and operational ownership.</td></tr>
+<tr><td><strong>Meta</strong></td><td>Evaluation framework for an AI feature</td><td>Metric hierarchy, representative datasets, human/automated evaluation, experimentation, and feedback loops.</td></tr>
+</tbody></table></div>
+<h3>System-design answer sequence</h3><ol class="steps"><li>Clarify user, job, scope, constraints, and baseline.</li><li>Define outcome metrics and unacceptable failure modes.</li><li>Draw the end-to-end data and control flow.</li><li>Explain model, retrieval, tool, and orchestration choices.</li><li>Discuss latency, cost, reliability, privacy, and safety.</li><li>Explain evaluation, rollout, monitoring, and iteration.</li></ol>
+</section>
 
-    <section id="evaluation">
-      <h2>06 / Evals &amp; metrics</h2>
-      <h3>Build an evaluation framework from scratch</h3>
-      <ol class="steps">
-        <li>Define the user outcome and failure costs.</li><li>Identify representative tasks and segment by risk and difficulty.</li><li>Create a versioned dataset of realistic inputs and expected properties.</li><li>Define rubrics for correctness, relevance, completeness, groundedness, safety, and style.</li><li>Combine deterministic checks, human review, and model-assisted evaluation.</li><li>Establish baselines and release thresholds.</li><li>Run offline evaluations, then shadow or limited production tests.</li><li>Monitor real-world quality, regressions, and user feedback continuously.</li>
-      </ol>
-      <h3>Precision, recall, and F1</h3>
-      <ul><li><strong>Precision:</strong> Of the items predicted positive, how many were actually positive?</li><li><strong>Recall:</strong> Of all actual positive items, how many did the system find?</li><li><strong>F1:</strong> The harmonic mean of precision and recall.</li></ul>
-      <p>Use precision when false positives are costly; use recall when missing a relevant item is costly. Explain the trade-off in terms of user impact.</p>
-      <h3>What is LLM-as-judge?</h3>
-      <p>An LLM judge scores outputs against a rubric. It can scale evaluation, but may be biased by wording, verbosity, position, or model preferences. Validate it against human judgments, use clear rubrics and blind comparisons where possible, and audit disagreement. Do not use it as the sole authority for high-stakes decisions.</p>
-      <h3>How do you evaluate a non-deterministic system?</h3>
-      <p>Use repeated runs, distributions, confidence intervals, and task-level pass rates rather than expecting identical outputs. Track performance by scenario and segment. Preserve test inputs, model versions, prompts, tool versions, and evaluation configuration to diagnose regressions.</p>
-      <h3>Testing pyramid for AI products</h3>
-      <ul><li><strong>Unit tests:</strong> Deterministic code, schemas, permissions, parsing, and policy enforcement.</li><li><strong>Component tests:</strong> Retrieval, tools, prompt assembly, and model adapters.</li><li><strong>Evaluation tests:</strong> Golden datasets, adversarial cases, and repeated model runs.</li><li><strong>End-to-end tests:</strong> Full user workflows with real or representative dependencies.</li><li><strong>Production monitoring:</strong> Quality signals, user feedback, latency, cost, and incidents.</li></ul>
-      <h3>How do you catch regressions after a model swap?</h3>
-      <p>A model swap can change formatting, tool selection, refusal behavior, latency, cost, and factuality. Run the same versioned evaluation suite against old and new models, compare by task segment, and use shadow traffic or a gradual rollout with rollback criteria.</p>
-      <h3>What is observability for AI products?</h3>
-      <p>Capture traces across the request: model/version, prompt template version, token counts, retrieval sources and scores, tool calls, latency, retries, errors, cost, and user feedback. Redact or minimize sensitive content and enforce access controls and retention policies.</p>
-      <h3>How would you design a human-in-the-loop feedback system?</h3>
-      <p>Collect explicit ratings and corrections, plus behavioral signals such as edits, retries, abandonment, overrides, and acceptance. Connect feedback to a failure category, workflow stage, and evaluation case. Protect privacy and avoid treating every user action as ground truth.</p>
-      <h3>Offline evals pass but users are unhappy. What now?</h3>
-      <p>Check whether the evaluation set represents real users, workflows, and edge cases. Investigate usability, trust, latency, freshness, coverage, discoverability, and whether the feature solves the actual problem. Segment feedback; averages can hide poor experiences for important cohorts.</p>
-      <h3>Faithfulness versus retrieval quality</h3>
-      <p>Retrieval quality asks whether the right evidence was found. Faithfulness asks whether the generated answer accurately reflects that evidence. Measure separately: retrieval metrics can include recall@k and ranking quality; generation metrics can include claim support, citation correctness, and unsupported-claim rate.</p>
-      <h3>What should you check first when quality drops?</h3>
-      <p>Check recent changes in model/version, prompt, retrieval index, source data, tool behavior, traffic mix, and evaluation configuration. Use traces and segment-level metrics to isolate the stage and cohort affected before changing the model.</p>
-    </section>
-
-    <section id="companies">
-      <h2>07 / Interview themes across AI companies</h2>
-      <p>These are preparation themes drawn from the supplied question collection, not verified or official company interview questions.</p>
-      <div class="table-wrap"><table><thead><tr><th>Company</th><th>Preparation theme</th></tr></thead><tbody>
-        <tr><td><strong>OpenAI</strong></td><td>Define hallucination; handle a model with dramatically higher capability at dramatically higher cost.</td></tr>
-        <tr><td><strong>Anthropic</strong></td><td>Mitigate hallucinations in production; define a model redline.</td></tr>
-        <tr><td><strong>Google</strong></td><td>Design agents that improve productivity; outline a high-level system for Gemini responses.</td></tr>
-        <tr><td><strong>NVIDIA</strong></td><td>Explain GPU use in deep learning; design RAG with latency, relevance, and cost trade-offs.</td></tr>
-        <tr><td><strong>Perplexity</strong></td><td>Explain an end-to-end RAG system.</td></tr>
-        <tr><td><strong>Glean</strong></td><td>Discuss experience building end-to-end agentic systems.</td></tr>
-        <tr><td><strong>Microsoft</strong></td><td>Explain model-selection trade-offs; design the system for an AI experience.</td></tr>
-        <tr><td><strong>Amazon</strong></td><td>Decide when to use ML to solve a problem.</td></tr>
-        <tr><td><strong>Meta</strong></td><td>Whiteboard an evaluation framework for an AI feature.</td></tr>
-      </tbody></table></div>
-      <h3>A repeatable structure for system-design answers</h3>
-      <ol><li>Clarify user, problem, scope, and constraints.</li><li>Define success metrics and unacceptable failure modes.</li><li>Describe the end-to-end architecture and data flow.</li><li>Explain model, retrieval, tool, and orchestration choices.</li><li>Cover latency, cost, reliability, privacy, and safety.</li><li>Explain evaluation, launch strategy, and iteration.</li></ol>
-    </section>
-
-    <section id="framework">
-      <h2>08 / The technical AI PM answer framework</h2>
-      <p>For almost any technical AI PM question, structure the answer around these lenses:</p>
-      <div class="framework">
-        <div class="concept"><strong>01 · User problem</strong><p>Who is the user, what job are they trying to do, and why is AI useful?</p></div>
-        <div class="concept"><strong>02 · Mechanism</strong><p>What happens under the hood, from input to output?</p></div>
-        <div class="concept"><strong>03 · Alternatives</strong><p>Could rules, search, conventional ML, or a smaller model do the job?</p></div>
-        <div class="concept"><strong>04 · Trade-offs</strong><p>What are the implications for quality, latency, cost, privacy, and complexity?</p></div>
-        <div class="concept"><strong>05 · Failure modes</strong><p>How can the system fail, and how will users recover?</p></div>
-        <div class="concept"><strong>06 · Evaluation</strong><p>How will you know it works across realistic scenarios?</p></div>
-        <div class="concept"><strong>07 · Operations</strong><p>How will you monitor, secure, scale, and improve it?</p></div>
-        <div class="concept"><strong>08 · Business outcome</strong><p>What measurable customer or business value does it create?</p></div>
-      </div>
-      <div class="callout">The strongest PM answers connect technical depth to product judgment. Avoid naming technologies without explaining why they fit the problem and what you would measure.</div>
-      <h3>Suggested study sequence</h3>
-      <ol><li>LLM fundamentals and model behavior.</li><li>Tool calling, agents, and MCP.</li><li>RAG, embeddings, and context engineering.</li><li>Orchestration, routing, and system design.</li><li>Evaluation, observability, and responsible launch.</li><li>Practice end-to-end product design and cost estimation.</li></ol>
-    </section>
-
-    <section id="glossary">
-      <h2>Quick glossary</h2>
-      <div class="table-wrap"><table><tbody>
-        <tr><td><strong>Grounding</strong></td><td>Tying an answer to trusted evidence or data.</td></tr>
-        <tr><td><strong>Hallucination</strong></td><td>A plausible-sounding but unsupported or incorrect model output.</td></tr>
-        <tr><td><strong>Inference</strong></td><td>Running a trained model to produce outputs.</td></tr>
-        <tr><td><strong>Prefill</strong></td><td>Processing the input sequence before token generation.</td></tr>
-        <tr><td><strong>Decode</strong></td><td>Generating output tokens sequentially.</td></tr>
-        <tr><td><strong>Reranking</strong></td><td>Reordering retrieved candidates using a relevance model.</td></tr>
-        <tr><td><strong>Redline</strong></td><td>A defined boundary beyond which a model or feature must not operate or be released.</td></tr>
-        <tr><td><strong>SLO</strong></td><td>A target for a service-level indicator, such as latency or availability.</td></tr>
-        <tr><td><strong>Non-determinism</strong></td><td>Variation in outputs or execution despite apparently identical inputs.</td></tr>
-      </tbody></table></div>
-    </section>
-    <footer class="footer">Commonplace · AI PM Knowledge</footer>
-  </main>
+<section class="chapter" id="pm"><h2>08 / Technical AI PM answer framework</h2><p class="chapter-intro">The meta-skill: translate engineering depth into product judgment. A strong answer is not a list of technologies; it is a defensible decision.</p>
+<div class="concepts">
+<div class="concept"><b>1 · User problem</b><p>Who is the user, what job are they trying to do, and why is AI useful?</p></div><div class="concept"><b>2 · Mechanism</b><p>What happens under the hood, from input to output?</p></div>
+<div class="concept"><b>3 · Alternatives</b><p>Could rules, search, conventional ML, or a smaller model do the job?</p></div><div class="concept"><b>4 · Trade-offs</b><p>What are the implications for quality, latency, cost, privacy, and complexity?</p></div>
+<div class="concept"><b>5 · Failure modes</b><p>How can the system fail, and how will users recover?</p></div><div class="concept"><b>6 · Evaluation</b><p>How will you know it works across realistic scenarios?</p></div>
+<div class="concept"><b>7 · Operations</b><p>How will you monitor, secure, scale, and improve it?</p></div><div class="concept"><b>8 · Business outcome</b><p>What measurable customer or business value does it create?</p></div>
 </div>
-<script>
-  const links=[...document.querySelectorAll('nav a')];
-  const sections=links.map(a=>document.querySelector(a.getAttribute('href')));
-  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));}}),{rootMargin:'-15% 0px -75% 0px'});
-  sections.forEach(section=>section&&observer.observe(section));
-</script>
-</body>
-</html>
+<div class="callout"><strong>Practice discipline:</strong> For every answer, be able to draw the architecture, explain one level below each box, name the top two failure modes, state the key metric, and explain the trade-off you would make first.</div>
+<h3>Suggested study sequence</h3><ol><li>LLM fundamentals and model behavior.</li><li>Tool calling, agents, and MCP.</li><li>RAG, embeddings, and context engineering.</li><li>Orchestration, routing, and system design.</li><li>Evaluation, observability, and responsible launch.</li><li>Practice end-to-end product design and cost estimation.</li></ol>
+</section>
+
+<section class="chapter" id="glossary"><h2>Quick glossary</h2><div class="table-wrap"><table><tbody>
+<tr><td><strong>Grounding</strong></td><td>Tying an answer to trusted evidence or data.</td></tr><tr><td><strong>Hallucination</strong></td><td>A plausible-sounding but unsupported or incorrect model output.</td></tr><tr><td><strong>Inference</strong></td><td>Running a trained model to produce outputs.</td></tr><tr><td><strong>Prefill</strong></td><td>Processing the input sequence before token generation.</td></tr><tr><td><strong>Decode</strong></td><td>Generating output tokens sequentially.</td></tr><tr><td><strong>KV cache</strong></td><td>Stored attention keys and values reused during autoregressive generation.</td></tr><tr><td><strong>Reranking</strong></td><td>Reordering retrieved candidates using a relevance model.</td></tr><tr><td><strong>Redline</strong></td><td>A defined boundary beyond which a model or feature must not operate or be released.</td></tr><tr><td><strong>SLO</strong></td><td>A target for a service-level indicator, such as latency or availability.</td></tr><tr><td><strong>Non-determinism</strong></td><td>Variation in outputs or execution despite apparently identical inputs.</td></tr><tr><td><strong>Idempotency</strong></td><td>A property that makes repeating an operation safe from duplicate side effects.</td></tr><tr><td><strong>nDCG</strong></td><td>A ranking metric that rewards relevant results appearing higher in a result list.</td></tr>
+</tbody></table></div></section>
+<footer>Commonplace · AI PM Knowledge · Structured as definition → mental model → concepts and uses → engineering depth.</footer>
+</main></div>
+<script>const links=[...document.querySelectorAll('nav a')];const sections=links.map(a=>document.querySelector(a.getAttribute('href')));const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));}),{rootMargin:'-15% 0px -75% 0px'});sections.forEach(s=>s&&observer.observe(s));</script>
+</body></html>
