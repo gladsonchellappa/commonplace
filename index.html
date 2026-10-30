@@ -34,12 +34,130 @@
         letter-spacing: -0.055em;
         line-height: 1.05;
       }
+
+      .intro {
+        margin: 14px 0 42px;
+        color: #77746b;
+        font-size: 1.05rem;
+      }
+
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-bottom: 22px;
+      }
+
+      .filter {
+        border: 1px solid #d8d4ca;
+        border-radius: 999px;
+        padding: 7px 13px;
+        background: transparent;
+        color: #5c594f;
+        font: inherit;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+
+      .filter:hover, .filter[aria-pressed="true"] {
+        border-color: #292923;
+        background: #292923;
+        color: #fff;
+      }
+
+      .entry {
+        padding: 22px 0;
+        border-top: 1px solid #dedbd2;
+      }
+
+      .entry h2 {
+        margin: 0;
+        font-size: 1.45rem;
+        font-weight: 400;
+      }
+
+      .entry h2 a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .entry h2 a:hover { text-decoration: underline; }
+
+      .entry p {
+        max-width: 680px;
+        margin: 9px 0 13px;
+        color: #77746b;
+        line-height: 1.55;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .tag {
+        color: #77746b;
+        font-family: Arial, sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .tag + .tag::before {
+        content: "·";
+        margin-right: 7px;
+      }
+
+      [hidden] { display: none !important; }
+
+      @media (max-width: 600px) {
+        body { padding: 48px 22px; }
+        .intro { margin-bottom: 32px; }
+      }
     </style>
   </head>
   <body>
     <main>
       <h1>Commonplace</h1>
-      <!-- Future: add tag filters and a list of linked HTML pages here. -->
+      <p class="intro">A collection of pages worth keeping.</p>
+
+      <nav class="filters" aria-label="Filter pages by tag">
+        <button class="filter" type="button" data-filter="All" aria-pressed="true">All</button>
+        <button class="filter" type="button" data-filter="AI" aria-pressed="false">AI</button>
+        <button class="filter" type="button" data-filter="Product" aria-pressed="false">Product</button>
+        <button class="filter" type="button" data-filter="Engineering" aria-pressed="false">Engineering</button>
+      </nav>
+
+      <section aria-label="Pages">
+        <article class="entry" data-tags="AI Product Engineering">
+          <h2><a href="./10.30-1700-ai-pm-knowledge.md">AI PM knowledge</a></h2>
+          <p>A technical study guide for AI product managers, covering LLMs, agents, RAG, orchestration, system design, trade-offs, and evaluation.</p>
+          <div class="tags" aria-label="Tags">
+            <span class="tag">AI</span>
+            <span class="tag">Product</span>
+            <span class="tag">Engineering</span>
+          </div>
+        </article>
+      </section>
     </main>
+
+    <script>
+      const filters = document.querySelectorAll("[data-filter]");
+      const entries = document.querySelectorAll(".entry");
+
+      filters.forEach((button) => {
+        button.addEventListener("click", () => {
+          const selected = button.dataset.filter;
+          filters.forEach((filter) => {
+            filter.setAttribute("aria-pressed", String(filter === button));
+          });
+          entries.forEach((entry) => {
+            const tags = entry.dataset.tags.split(" ");
+            entry.hidden = selected !== "All" && !tags.includes(selected);
+          });
+        });
+      });
+    </script>
   </body>
 </html>
