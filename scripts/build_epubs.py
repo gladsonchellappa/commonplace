@@ -139,7 +139,14 @@ def add_download_link(page, label, href):
     if marker in s:
         s=re.sub(re.escape(marker)+r'.*?<!-- /EPUB_DOWNLOAD -->',marker+block+'<!-- /EPUB_DOWNLOAD -->',s,flags=re.S)
     else:
-        s=s.replace('</header>','</header>\n'+marker+block+'<!-- /EPUB_DOWNLOAD -->',1)
+        if '</header>' in s:
+            s=s.replace('</header>','</header>\\n'+marker+block+'<!-- /EPUB_DOWNLOAD -->',1)
+        else:
+            meta=re.search(r'(<div class=["']meta["'][^>]*>[\\s\\S]*?</div>)',s)
+            if meta:
+                s=s[:meta.end()]+'\\n'+marker+block+'<!-- /EPUB_DOWNLOAD -->'+s[meta.end():]
+            else:
+                s=s.replace('</main>',marker+block+'<!-- /EPUB_DOWNLOAD --></main>',1)
     page.write_text(s,encoding="utf-8")
 
 def main():
