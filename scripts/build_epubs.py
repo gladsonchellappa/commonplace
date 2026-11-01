@@ -45,7 +45,7 @@ def p(text):
 
 def build_pm(path):
     raw = path.read_text(encoding="utf-8")
-    m = re.search(r'const chapters=(\[.*?\]);\s*const [A-Za-z_$][\w$]*\s*=', raw, re.S)
+    m = re.search(r'const chapters=(\[.*?\]),leadershipLens=', raw, re.S)
     if not m:
         raise RuntimeError("Could not locate the structured chapter data in the AI PM guide.")
     chapters = json.loads(m.group(1))
