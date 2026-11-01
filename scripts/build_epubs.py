@@ -142,7 +142,7 @@ def add_download_link(page, label, href):
         if '</header>' in s:
             s=s.replace('</header>','</header>\\n'+marker+block+'<!-- /EPUB_DOWNLOAD -->',1)
         else:
-            meta=re.search(r'(<div class=["']meta["'][^>]*>[\\s\\S]*?</div>)',s)
+            meta=re.search(r"(<div class=['\"]meta['\"][^>]*>[\\s\\S]*?</div>)",s)
             if meta:
                 s=s[:meta.end()]+'\\n'+marker+block+'<!-- /EPUB_DOWNLOAD -->'+s[meta.end():]
             else:
