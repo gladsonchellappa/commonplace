@@ -34,6 +34,8 @@ def main():
     body = re.sub(r"^---\s*\n.*?\n---\s*\n", "", raw, count=1, flags=re.S)
     rendered = markdown.markdown(body, extensions=["tables", "fenced_code", "toc"])
     soup = BeautifulSoup(rendered, "html.parser")
+    for image in soup.find_all("img"):
+        image["src"] = "../images/" + Path(image["src"]).name
     sections = []
     current_title = "Preface"
     current_nodes = []
@@ -64,6 +66,8 @@ def main():
         spine.append(f'<itemref idref="c{i}"/>')
         nav.append(f'<li><a href="{href}">{html.escape(title)}</a></li>')
 
+    image_files = sorted((DOCS / "images").glob("*.svg"))
+    image_manifest = "".join('<item id="img%d" href="images/%s" media-type="image/svg+xml"/>' % (i,p.name) for i,p in enumerate(image_files, 1))
     opf = ('<?xml version="1.0" encoding="utf-8"?>'
            '<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uid" xml:lang="en">'
            '<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">'
@@ -72,7 +76,7 @@ def main():
            f'<meta property="dcterms:modified">{datetime.now().astimezone().strftime("%Y-%m-%dT%H:%M:%SZ")}</meta>'
            '</metadata><manifest><item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>'
            '<item id="css" href="styles/book.css" media-type="text/css"/>'
-           + "".join(manifest) + '</manifest><spine>' + "".join(spine) + '</spine></package>')
+           + "".join(manifest) + image_manifest + '</manifest><spine>' + "".join(spine) + '</spine></package>')
     navdoc = ('<?xml version="1.0" encoding="utf-8"?>'
               '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="en">'
               '<head><title>Contents</title></head><body><nav epub:type="toc" id="toc"><h1>Contents</h1><ol>'
@@ -87,6 +91,8 @@ def main():
         z.writestr("OEBPS/styles/book.css", CSS)
         for path, data in chapter_files:
             z.writestr(path, data)
+        for p in image_files:
+            z.write(p, "OEBPS/images/" + p.name)
     tmp.replace(target)
 
     source_text = SOURCE.read_text(encoding="utf-8")
