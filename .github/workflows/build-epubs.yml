@@ -7,6 +7,7 @@ on:
       - "docs/10.30-1700-ai-pm-knowledge.html"
       - "docs/10.31-1330-ai-harness-engineering.html"
       - "docs/11.02-0900-ai-harness-engineering-book.md"
+      - "docs/images/**"
       - "scripts/build_harness_book_epub.py"
       - "scripts/build_epubs.py"
       - ".github/workflows/build-epubs.yml"
