@@ -8,6 +8,10 @@ A curated collection of saved ideas. Original submitted wording is preserved; fo
   - Tags: emotional-intelligence, mindset, habits, self-awareness, anxiety, courage, personal-growth, identity
   - Source: [YouTube Shorts](https://www.youtube.com/shorts/gNzGj94eVDk)
   - Captured: 05 Nov 2026
+- [How to focus to change your brain](growth/how-to-focus-to-change-your-brain.md) — Neuroplasticity, attention, learning, and sleep.
+  - Tags: neuroplasticity, focus, attention, learning, brain, memory, sleep, NSDR, neuroscience
+  - Source: [YouTube](https://youtu.be/4AwyVTHEU3s?si=9tH7Ow2O-Uu46nky)
+  - Captured: 07 Nov 2026
 
 ## Finance
 
