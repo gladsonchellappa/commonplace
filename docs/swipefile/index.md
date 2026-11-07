@@ -12,6 +12,10 @@ A curated collection of saved ideas. Original submitted wording is preserved; fo
   - Tags: neuroplasticity, focus, attention, learning, brain, memory, sleep, NSDR, neuroscience
   - Source: [YouTube](https://youtu.be/4AwyVTHEU3s?si=9tH7Ow2O-Uu46nky)
   - Captured: 07 Nov 2026
+- [The Psychology of Verbal Intelligence: Turning Complex Thoughts into Clear Speech](growth/psychology-of-verbal-intelligence-and-clear-speech.md) — Translating complex thoughts into clear, structured speech.
+  - Tags: verbal-intelligence, communication, articulation, psychology, vocabulary, clear-thinking, public-speaking
+  - Source: [YouTube](https://youtu.be/fALWgsuAIf0?si=7L1VMCjiDF1Mqhzq)
+  - Captured: 07 Nov 2026
 
 ## Finance
 
