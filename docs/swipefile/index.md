@@ -23,7 +23,10 @@ _No entries yet._
 
 ## Technology
 
-_No entries yet._
+- [AI Context Engineering](technology/ai-context-engineering.md) — Context design, RAG, optimization, agentic context, evaluation, and advanced patterns.
+  - Tags: ai, context-engineering, prompt-engineering, rag, llm, agents, memory, retrieval, evaluation
+  - Source: Uploaded PDF: AI Context Engineering.pdf
+  - Captured: 09 Nov 2026
 
 ## Business
 
