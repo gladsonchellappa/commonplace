@@ -30,7 +30,10 @@ _No entries yet._
 
 ## Business
 
-_No entries yet._
+- [Think Like an Executive, Not a Manager](business/think-like-an-executive-not-a-manager.md) — Executive thinking at organizational scale: visibility, communication, incentives, purpose, and coherence.
+  - Tags: executive-thinking, leadership, organizational-design, decision-making, strategy
+  - Source: Not provided
+  - Captured: 09 Nov 2026
 
 ## Knowledge
 
